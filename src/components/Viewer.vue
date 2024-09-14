@@ -11,7 +11,7 @@ function openViewer() {
 
 <template>
   <div>
-    <button class="text-7xl btn" @click="openViewer">
+    <button class="btn btn-secondary" @click="openViewer">
       뷰어 열기
     </button>
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
