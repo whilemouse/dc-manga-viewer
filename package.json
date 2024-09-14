@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "postcss-prefix-selector": "^1.16.1",
     "vue": "^3.2.25"
   },
   "devDependencies": {
