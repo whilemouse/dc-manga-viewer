@@ -16,10 +16,10 @@ onUnmounted(() => {
 
 // 키보드 이벤트 핸들러 함수
 function handleKeyDown(event: KeyboardEvent) {
-  if (event.key === 'ArrowRight') {
+  if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
     pageNext()
   }
-  if (event.key === 'ArrowLeft') {
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
     pagePrev()
   }
   if (event.key === 'Escape') {
@@ -57,13 +57,12 @@ function pageNext() {
     </button>
 
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
-      <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="h-full" :src="image.src" alt="">
-      <button class="fixed text-5xl left-5" @click="pagePrev">
-        <
-      </button>
-      <button class="fixed text-5xl right-5" @click="pageNext">
-        >
-      </button>
+      <div class="fixed left-0 w-1/2 h-full " @click="pagePrev" />
+      <div class="fixed right-0 w-1/2 h-full " @click="pageNext" />
+      <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="h-full " :src="image.src" alt="">
+      <p class="fixed text-xl right-5 bottom-5">
+        {{ pIndex + 1 }} / {{ imagesArray.length }}
+      </p>
       <!-- <button class="fixed top-0 text-2xl left-1/2" @click="closeViewer">
         X
       </button> -->
