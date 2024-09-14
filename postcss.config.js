@@ -5,7 +5,16 @@ module.exports = {
     require('autoprefixer'),
     require('postcss-prefix-selector')({
       prefix: '.my-extension',
-      exclude: ['.my-extension'], // 이미 프리픽스가 있는 선택자는 제외
+      exclude: [':root', '.my-extension'],
+      transform: (prefix, selector, prefixedSelector) => {
+        if (selector.startsWith(':root')) {
+          return selector
+        }
+        if (selector === '.my-extension') {
+          return selector
+        }
+        return prefixedSelector
+      },
     }),
   ],
 }
