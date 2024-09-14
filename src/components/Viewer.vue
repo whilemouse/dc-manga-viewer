@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import slash from '../assets/slash.png'
 
 const pIndex = ref(0)
 const isOpen = ref(false)
 let imagesArray: HTMLImageElement[] = []
 const recommendBtn: HTMLDivElement | null = document.querySelector('.btn_recommend_box')
+const slashUrl = chrome.runtime.getURL(slash)
 
 onMounted(() => {
   const writeDiv = document.querySelector('.write_div')
@@ -25,6 +27,9 @@ function handleKeyDown(event: KeyboardEvent) {
   }
   if (event.key === 'Escape') {
     closeViewer()
+  }
+  if (event.key === '/') {
+    moveToRecommendBtn()
   }
 }
 
@@ -67,16 +72,22 @@ function moveToRecommendBtn() {
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
       <div class="fixed left-0 w-1/2 h-full " @click="pagePrev" />
       <div class="fixed right-0 w-1/2 h-full " @click="pageNext" />
-      <button class="fixed top-0 right-0 p-10 text-3xl" @click="closeViewer">
-        X
-      </button>
-      <button class="fixed p-10 text-3xl top-20 right-20" @click="moveToRecommendBtn">
-        개추 이동
-      </button>
-      <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="h-full " :src="image.src" alt="">
-      <p class="fixed text-xl right-5 bottom-5">
+      <p class="fixed text-xl left-5 top-5">
         {{ pIndex + 1 }} / {{ imagesArray.length }}
       </p>
+      <button class="fixed top-0 right-0 p-5 text-2xl" @click="closeViewer">
+        X
+      </button>
+      <div v-show="pIndex === imagesArray.length - 1" class="fixed w-72 right-2 bottom-2 modal-box" @click="moveToRecommendBtn">
+        <h3 class="text-2xl font-bold">
+          마지막 페이지입니다
+        </h3>
+        <btn class="mt-4 text-lg btn btn-info btn-outline">
+          댓글로 이동
+          <img class="w-8" :src="slashUrl" alt="">
+        </btn>
+      </div>
+      <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="h-full " :src="image.src" alt="">
     </dialog>
   </div>
 </template>
