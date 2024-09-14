@@ -59,6 +59,9 @@ function pageNext() {
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
       <div class="fixed left-0 w-1/2 h-full " @click="pagePrev" />
       <div class="fixed right-0 w-1/2 h-full " @click="pageNext" />
+      <button class="fixed top-0 right-0 p-10 text-3xl" @click="closeViewer">
+        X
+      </button>
       <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="h-full " :src="image.src" alt="">
       <p class="fixed text-xl right-5 bottom-5">
         {{ pIndex + 1 }} / {{ imagesArray.length }}
