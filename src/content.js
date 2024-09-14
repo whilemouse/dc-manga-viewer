@@ -4,7 +4,7 @@ import App from './App.vue'
 
 const root = document.createElement('div')
 root.id = 'crx-root'
-document.body.append(root)
+document.body.prepend(root)
 
 const app = createApp(App)
 app.mount(root)
