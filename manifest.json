@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "js": ["src/content.js"],
-      "matches": ["https://www.google.com/*"]
+      "matches": ["https://gall.dcinside.com/*", "https://www.google.com//*"]
     }
   ]
 }
