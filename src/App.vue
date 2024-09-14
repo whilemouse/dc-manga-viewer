@@ -5,28 +5,16 @@ import logo from './assets/logo.png';
 const logoUrl = chrome.runtime.getURL(logo);
 
 
-
 console.log('App')
 </script>
 
 <template>
+  <div class="my-extension ">
+    <a href="b" class=" text-3xl">A23</a>
+  </div>
   <img alt="Vue logo" :src="logoUrl" />
 </template>
 
 <style>
-#crx-root {
-  position: fixed;
-  top: 3rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
 
-#crx-root button {
-  background-color: rgb(239, 239, 239);
-  border-color: rgb(118, 118, 118);
-  border-image: initial;
-  border-style: outset;
-  border-width: 2px;
-  margin: 0;
-  padding: 1px 6px;
-}</style>
+</style>
