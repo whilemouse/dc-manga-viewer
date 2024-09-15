@@ -8,11 +8,30 @@ let imagesArray: HTMLImageElement[] = []
 const recommendBtn: HTMLDivElement | null = document.querySelector('.btn_recommend_box')
 const slashUrl = chrome.runtime.getURL(slash)
 
+const hasViewerOptions = {
+  regex: /id=comic\w*/,
+  greaterImageCount: 4,
+}
+const hasViewer = ref(false)
+
 onMounted(() => {
   const writeDiv = document.querySelector('.write_div')
   const images = writeDiv!.querySelectorAll('img')
   imagesArray = Array.from(images)
+
+  hasViewer.value = isComicGallery() && greaterImageLength()
 })
+
+function isComicGallery() {
+  const urlParams = window.location.search
+  const matches = urlParams.match(hasViewerOptions.regex)
+
+  return !!matches
+}
+
+function greaterImageLength() {
+  return imagesArray.length > hasViewerOptions.greaterImageCount
+}
 
 onUnmounted(() => {
 })
@@ -65,8 +84,8 @@ function moveToRecommendBtn() {
 
 <template>
   <div>
-    <button class="btn btn-secondary" @click="openViewer">
-      뷰어 열기
+    <button v-if="hasViewer" class="btn btn-active" @click="openViewer">
+      뷰어
     </button>
 
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
