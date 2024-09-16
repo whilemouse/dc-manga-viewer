@@ -54,11 +54,13 @@ function handleKeyDown(event: KeyboardEvent) {
 }
 
 function openViewer() {
+  onFullscreen()
   isOpen.value = true
   window.addEventListener('keydown', handleKeyDown)
 }
 
 function closeViewer() {
+  offFullscreen()
   isOpen.value = false
   window.removeEventListener('keydown', handleKeyDown)
 }
