@@ -13,6 +13,7 @@ import ViewerIcon from './assets/svg/ViewerIcon.vue'
           <p class="flex items-center ">
             뷰어: <ViewerIcon class="w-5" />
           </p>
+          <p>종료: ESC </p>
           <p>다음 페이지: →↓ </p>
           <p>이전 페이지: ←↑  </p>
           <p>댓글로 이동: /  </p>
