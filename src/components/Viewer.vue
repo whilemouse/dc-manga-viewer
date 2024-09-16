@@ -56,11 +56,13 @@ function handleKeyDown(event: KeyboardEvent) {
 function openViewer() {
   isOpen.value = true
   window.addEventListener('keydown', handleKeyDown)
+  onFullscreen()
 }
 
 function closeViewer() {
   isOpen.value = false
   window.removeEventListener('keydown', handleKeyDown)
+  offFullscreen()
 }
 
 function pagePrev() {
@@ -81,24 +83,36 @@ function moveToRecommendBtn() {
     recommendBtn.scrollIntoView()
   }
 }
+
+function onFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+  }
+}
+
+function offFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen()
+  }
+}
 </script>
 
 <template>
   <div>
-    <button v-if="hasViewer" class="btn btn-active" @click="openViewer">
+    <button v-if="hasViewer" class="btn btn-active dark:bg-gray-300" @click="openViewer">
       <ViewerIcon />
     </button>
 
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
       <div class="fixed left-0 w-1/2 h-full " @click="pagePrev" />
       <div class="fixed right-0 w-1/2 h-full " @click="pageNext" />
-      <p class="fixed text-xl left-5 top-5">
+      <p class="fixed text-xl text-white left-5 top-5">
         {{ pIndex + 1 }} / {{ imagesArray.length }}
       </p>
-      <button class="fixed top-0 right-0 p-5 text-2xl" @click="closeViewer">
+      <button class="fixed top-0 p-5 text-2xl text-white right-5 " @click="closeViewer">
         X
       </button>
-      <div v-show="pIndex === imagesArray.length - 1" class="fixed w-72 right-2 bottom-2 modal-box" @click="moveToRecommendBtn">
+      <div v-show="pIndex === imagesArray.length - 1" data-theme="dark" class="fixed w-72 right-2 bottom-2 modal-box" @click="moveToRecommendBtn">
         <h3 class="text-2xl font-bold">
           마지막 페이지입니다
         </h3>
@@ -107,7 +121,7 @@ function moveToRecommendBtn() {
           <img class="w-8" :src="slashUrl" alt="">
         </btn>
       </div>
-      <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="h-full " :src="image.src" alt="">
+      <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="max-h-screen" :src="image.src" alt="">
     </dialog>
   </div>
 </template>
