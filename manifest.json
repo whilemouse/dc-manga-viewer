@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "CRXJS Vue Vite Example",
+  "name": "만갤 뷰어",
   "version": "1.0.0",
   "action": { "default_popup": "index.html" },
   "content_scripts": [
