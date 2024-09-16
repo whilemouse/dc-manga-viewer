@@ -93,6 +93,15 @@ function offFullscreen() {
     document.exitFullscreen()
   }
 }
+
+function handleWheel(event: WheelEvent) {
+  if (event.deltaY > 0) {
+    pageNext()
+  }
+  else {
+    pagePrev()
+  }
+}
 </script>
 
 <template>
@@ -101,7 +110,7 @@ function offFullscreen() {
       <ViewerIcon />
     </button>
 
-    <dialog v-if="isOpen" class="h-full bg-black modal" open>
+    <dialog v-if="isOpen" class="h-full bg-black modal" open @wheel="handleWheel">
       <div class="fixed left-0 w-1/2 h-full " @click="pagePrev" />
       <div class="fixed right-0 w-1/2 h-full " @click="pageNext" />
       <p class="fixed text-xl text-white left-5 top-5">
