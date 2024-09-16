@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 import slash from '../assets/slash.png'
+import ViewerIcon from '../assets/svg/ViewerIcon.vue'
 
 const pIndex = ref(0)
 const isOpen = ref(false)
@@ -85,7 +86,7 @@ function moveToRecommendBtn() {
 <template>
   <div>
     <button v-if="hasViewer" class="btn btn-active" @click="openViewer">
-      뷰어
+      <ViewerIcon />
     </button>
 
     <dialog v-if="isOpen" class="h-full bg-black modal" open>
