@@ -122,12 +122,12 @@ function handleWheel(event: WheelEvent) {
         X
       </button>
       <div v-show="pIndex === imagesArray.length - 1" data-theme="dark" class="fixed w-72 right-2 bottom-2 modal-box" @click="moveToRecommendBtn">
-        <h3 class="text-2xl font-bold">
+        <h3 class="text-2xl font-bold text-[#CCCCCC]">
           마지막 페이지입니다
         </h3>
         <btn class="mt-4 text-lg btn btn-info btn-outline">
           댓글로 이동
-          <img class="w-8" :src="slashUrl" alt="">
+          <img class="w-8 h-8" :src="slashUrl" alt="">
         </btn>
       </div>
       <img v-for="(image, index) in imagesArray" v-show="pIndex === index" :key="index" class="max-h-screen" :src="image.src" alt="">
