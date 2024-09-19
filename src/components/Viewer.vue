@@ -17,6 +17,8 @@ const hasViewer = ref(false)
 
 onMounted(() => {
   const writeDiv = document.querySelector('.write_div')
+  if (!writeDiv)
+    return
   const images = writeDiv!.querySelectorAll('img')
   imagesArray = Array.from(images)
 
