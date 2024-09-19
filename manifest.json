@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "만갤 뷰어 dev",
+  "name": "디시 뷰어",
   "version": "1.0.2",
   "action": { "default_popup": "index.html" },
   "content_scripts": [
