@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import slash from '../assets/slash.png'
 import ViewerIcon from '../assets/svg/ViewerIcon.vue'
+import slash from '/src/assets/slash.png'
 
 const pIndex = ref(0)
 const isOpen = ref(false)
