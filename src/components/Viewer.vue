@@ -10,8 +10,8 @@ const recommendBtn: HTMLDivElement | null = document.querySelector('.btn_recomme
 const slashUrl = chrome.runtime.getURL(slash)
 
 const hasViewerOptions = {
-  regex: /id=comic\w*/,
-  greaterImageCount: 4,
+  galleryIds: ['comic', 'cartoon'], // 여기에 더 추가 가능
+  greaterImageCount: 2,
 }
 const hasViewer = ref(false)
 
@@ -20,14 +20,18 @@ onMounted(() => {
   const images = writeDiv!.querySelectorAll('img')
   imagesArray = Array.from(images)
 
-  hasViewer.value = isComicGallery() && greaterImageLength()
+  hasViewer.value = isAllowGallery() && greaterImageLength()
 })
 
-function isComicGallery() {
+function isAllowGallery() {
   const urlParams = window.location.search
-  const matches = urlParams.match(hasViewerOptions.regex)
 
-  return !!matches
+  const idMatch = urlParams.match(/id=([^&]*)/) // id 파라미터 추출
+  if (!idMatch)
+    return false // id가 없는 경우 false 반환
+
+  const idValue = idMatch[1] // 추출된 id 값
+  return hasViewerOptions.galleryIds.some(id => idValue.startsWith(id)) // 조건 배열과 비교
 }
 
 function greaterImageLength() {
