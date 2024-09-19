@@ -91,7 +91,7 @@ function onFullscreen() {
 }
 
 function offFullscreen() {
-  if (document.exitFullscreen) {
+  if (document.exitFullscreen && document.fullscreenElement) {
     document.exitFullscreen()
   }
 }
