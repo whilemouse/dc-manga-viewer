@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "디시 뷰어",
-  "version": "1.0.2",
+  "name": "디시 만화 뷰어",
+  "version": "1.0.3",
   "icons": {
     "16": "src/assets/icons/icon-16.png",
     "48": "src/assets/icons/icon-48.png",
