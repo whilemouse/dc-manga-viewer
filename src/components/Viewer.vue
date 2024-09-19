@@ -114,7 +114,7 @@ function handleWheel(event: WheelEvent) {
 
 <template>
   <div>
-    <button v-if="hasViewer" class="btn btn-active dark:bg-gray-300" @click="openViewer">
+    <button v-if="hasViewer" class="btn-active btn" @click="openViewer">
       <ViewerIcon />
     </button>
 
